@@ -22,9 +22,9 @@ module.exports = function (grunt) {
 
   function getDataUri(fontFile) {
     var typeMatch = fontType.exec(fontFile),
-        faceContent = grunt.file.read(fontFile),
+        faceContent = grunt.file.read(fontFile, {encoding: null}),
         fontEncoded = new Buffer(faceContent).toString('base64');
-    return 'data:font/' + typeMatch[1] + ';base64,' + fontEncoded;
+    return 'data:application/x-font-' + typeMatch[1] + ';base64,' + fontEncoded;
   }
 
   function embedFontUrls(faceContent, options) {
